@@ -32,7 +32,7 @@ Exponentiation
 
 
 ```{r}
-# Write answer here
+(2 + 6) * 5 ^ 2
 ```
  
 
@@ -46,7 +46,7 @@ b = 10
 ```
 
 ```{python}
-# Write answer here
+c = a
 ```
 
 ### What is the output of the following code?
