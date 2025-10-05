@@ -47,15 +47,24 @@ b = 10
 
 ```{python}
 c = a
+a = b
+b = c
+
+b , a = a , b
+
+b = b + a
+a = b - a
+b = b - a
 ```
 
 ### What is the output of the following code?
 
 ```{python}
-# Write answer here
+x = 7
+1 < x < 10 < x + 3 <= 13
 ```
 
-Explain in your words!
+It is false because of this: 10 < 10
 
 ::: unilur-solution
 Python parses four expressions, 1 < x and x < 10 and 10 < x + 3 and x + 3 <= 13 [ ] True or [ ] False 
@@ -79,9 +88,15 @@ Consider `is.na()` to identify indeces of missing positions.
  * Replace NAs with 0. 
  
  * How large is error that you make when ignore missing values?
+  Since the mean is sensitive to outliers, it will deviate from the real value
 
 ```{r}
 # Write answer here
+age <- c(18, 20, 34, 53, 12, NA, NA, 72, 75, 13)
+mean(age)
+age_na <- which(is.na(age))
+replace(age , list = age_na , values = c(0,0))
+mean(age_na)
 ```
 
 ### Create a data frame
@@ -94,7 +109,16 @@ Paul  | 16  | 57.0 |green  |   1
  John  |17   |65.3 | blue    | 2
 
 ```{r}
-# Write answer here
+classroom <- data.frame(
+  name   = c("Paul", "Mary", "Sara", "John"),
+  age    = c(16, 16, 16, 17),
+  weight = c(57.0, 50.0, 52.6, 65.3),
+  eye    = c("green", "blue", "black", "blue"),
+  group  = c(1, 1, 2, 2)
+)
+classroom
+str(classroom)
+
 ```
 
 Assign the data frame to a variable named `classroom`.
@@ -105,6 +129,12 @@ Which data structure would you use in base Python?
 
 ```{python}
 # Write answer here
+data = [
+    {"name": "Paul", "age": 16, "weight": 57.0, "eye": "green", "group": 1},
+    {"name": "Mary", "age": 16, "weight": 50.0, "eye": "blue", "group": 1},
+    {"name": "Sara", "age": 16, "weight": 52.6, "eye": "black", "group": 2},
+    {"name": "John", "age": 17, "weight": 65.3, "eye": "blue", "group": 2}
+]
 ```
 
 
@@ -194,6 +224,7 @@ Using `mtcars` (R) and the provided dictionary (Python):
    
 ```{r}
 # Write answer here
+mean(mtcars$mpg[mtcars$cyl == 6])
 ```
 
 - In base Python, calculate the same quantity.
@@ -209,6 +240,7 @@ Using `mtcars` (R) and the provided dictionary (Python):
 
 ```{r}
 # Write answer here
+sum(mtcars$mpg > 20 & mtcars$hp <= 100)
 ```
 
 - In Python, perform the same operation.
@@ -226,6 +258,9 @@ Using `mtcars` (R) and the provided dictionary (Python):
 
 ```{r}
 # Write answer here
+class(mtcars$mpg)
+mtcars$mpg <- as.integer(mtcars$mpg)
+class(mtcars$mpg)
 ```
 
 - In Python, check the type of `mtcars['mpg']` and coerce it to a list of integers.
@@ -240,7 +275,7 @@ Using `mtcars` (R) and the provided dictionary (Python):
 - In R, subset `mtcars` to select rows where `gear == 4` and columns `mpg`, and `hp`.
 
 ```{r}
-# Write answer here
+mtcars[mtcars$gear == 4, c("mpg", "hp")]
 ```
 
 - In Python, perform the same operation using explicit iteration.
@@ -257,7 +292,10 @@ Using `mtcars` (R) and the provided dictionary (Python):
 - In R, load the `tidyverse` package and use `dplyr::filter()` to select cars with `am == 1` (manual transmission).
 
 ```{r}
-# Write answer here
+library(tidyverse)
+
+manual_cars <- filter(mtcars, am == 1)
+
 ```
 
 - In Python, import the `statistics` module and calculate the mean `mpg` for cars with `am == 1`.
